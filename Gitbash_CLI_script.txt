@@ -2,7 +2,7 @@ Git bash code:
 
 1. Configuring AWS
 $ aws configure
-
+--Enter the AWS Access key, Secret Key, zone, file format as json
 
 2.uploading files
 $ aws s3 cp "C:\Users\kuppi\Downloads\archive (2)\store_dim.csv" s3://assurebuckets32pkkuppili/input/store/

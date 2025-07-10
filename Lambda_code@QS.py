@@ -1,3 +1,5 @@
+--Lambda code to trigger the Step function which further trigger all the states of it
+
 import json
 import boto3
 import os

@@ -73,7 +73,7 @@ You can view the full architecture diagram [here](https://tinyurl.com/yrwavs7x).
 
 ## 📸 Quicksight Dashboard
 
-You can view the Quicksight Dashboard snapshot [here](https://tinyurl.com/yrwavs7x)
+You can view the Quicksight Dashboard snapshot https://github.com/praveenkumarghub/AWS-ETL-Data-Pipeline/blob/098ab8e5ba00de1d6c581761d4f02e1656851cd4/Quicksight%20Dashboard.png
 
 ## 🛠 Technologies Used
 

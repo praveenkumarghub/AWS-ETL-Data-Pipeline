@@ -71,6 +71,10 @@ You can view the full architecture diagram [here](https://tinyurl.com/yrwavs7x).
 
 ---
 
+## 📸 Quicksight Dashboard
+
+You can view the full architecture diagram [here](https://tinyurl.com/yrwavs7x).
+
 ## 🛠 Technologies Used
 
 - AWS S3

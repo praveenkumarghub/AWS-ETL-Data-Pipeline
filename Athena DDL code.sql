@@ -1,3 +1,6 @@
+--DDL for creating a table
+--same script for uploading all the tables
+
 CREATE EXTERNAL TABLE IF NOT EXISTS samples3db.fact_table (
   payment_key STRING,
   coustomer_key STRING,

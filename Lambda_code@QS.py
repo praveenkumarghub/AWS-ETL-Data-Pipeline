@@ -1,4 +1,5 @@
---Lambda code to trigger the Step function which further trigger all the states of it
+--Lambda code to trigger the Quicksight dahboard to update based on the SQS queue
+-- I didnt share my account details here. change it according to yours
 
 import json
 import boto3

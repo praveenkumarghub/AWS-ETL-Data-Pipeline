@@ -1,3 +1,5 @@
+--Lambda code to trigger the Step function which further triggers athena and stores the transformed data into s3
+
 import json
 import boto3
 import os

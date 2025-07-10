@@ -1,0 +1,19 @@
+Git bash code:
+
+1. Configuring AWS
+$ aws configure
+
+
+2.uploading files
+$ aws s3 cp "C:\Users\kuppi\Downloads\archive (2)\store_dim.csv" s3://assurebuckets32pkkuppili/input/store/
+
+$ aws s3 cp "C:\Users\kuppi\Downloads\archive (2)\Trans_dim.csv" s3://assurebuckets32pkkuppili/input/Transactions/
+
+$ aws s3 cp "C:\Users\kuppi\Downloads\archive (2)\customer_dim.csv" s3://assurebuckets32pkkuppili/input/customer/
+
+$ aws s3 cp "C:\Users\kuppi\Downloads\archive (2)\item_dim.csv" s3://assurebuckets32pkkuppili/input/item/
+
+$ aws s3 cp "C:\Users\kuppi\Downloads\archive (2)\fact_table.csv" s3://assurebuckets32pkkuppili/input/fact_table/
+
+
+

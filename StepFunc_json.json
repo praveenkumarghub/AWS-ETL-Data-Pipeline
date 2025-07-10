@@ -1,0 +1,75 @@
+{
+  "Comment": "A description of my state machine",
+  "StartAt": "Athena StartQueryExecution",
+  "States": {
+    "Athena StartQueryExecution": {
+      "Type": "Task",
+      "Resource": "arn:aws:states:::athena:startQueryExecution",
+      "Parameters": {
+        "QueryString.$": "$.Query",
+        "WorkGroup": "primary",
+        "ResultConfiguration": {
+          "OutputLocation": "s3://assurebuckets32pkkuppili/athena_output/curated_sales_data_parquet"
+        }
+      },
+      "Next": "Wait"
+    },
+    "Wait": {
+      "Type": "Wait",
+      "Seconds": 5,
+      "Next": "Athena GetQueryExecution"
+    },
+    "Athena GetQueryExecution": {
+      "Type": "Task",
+      "Resource": "arn:aws:states:::athena:getQueryExecution",
+      "Parameters": {
+        "QueryExecutionId.$": "$.QueryExecutionId"
+      },
+      "ResultPath": "$.QueryExecution",
+      "Next": "Athena results succeed or failed"
+    },
+    "Athena results succeed or failed": {
+      "Type": "Choice",
+      "Choices": [
+        {
+          "Next": "SNS Publish MSG to Support Team",
+          "Variable": "$.QueryExecution.QueryExecution.Status.State",
+          "StringEquals": "FAILED"
+        },
+        {
+          "Next": "SNS Publish MSG to DA",
+          "Variable": "$.QueryExecution.QueryExecution.Status.State",
+          "StringEquals": "SUCCEEDED"
+        }
+      ],
+      "Default": "Athena GetQueryExecution"
+    },
+    "SNS Publish MSG to Support Team": {
+      "Type": "Task",
+      "Resource": "arn:aws:states:::sns:publish",
+      "Parameters": {
+        "TopicArn": "arn:aws:sns:us-east-2:178795994454:demo_topic2",
+        "Message": {
+          "Query.$": "$.QueryExecution.Query",
+          "Query_id.$": "$.QueryExecution.QueryExecutionId",
+          "Status.$": "$.QueryExecution.Status.State",
+          "Error.$": "$.QueryExecution.Status.StateChangeReason",
+          "Emergency_Contact": "ajhdsjdgw@email.in"
+        }
+      },
+      "End": true
+    },
+    "SNS Publish MSG to DA": {
+      "Type": "Task",
+      "Resource": "arn:aws:states:::sns:publish",
+      "Parameters": {
+        "TopicArn": "arn:aws:sns:us-east-2:178795994454:demo_topic",
+        "Message": {
+          "Result": "Data Loaded Successfully into curated folder"
+        }
+      },
+      "End": true
+    }
+  },
+  "QueryLanguage": "JSONPath"
+}
